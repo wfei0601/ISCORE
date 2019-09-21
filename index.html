@@ -7,31 +7,35 @@
 
 <h1>Patient Form</h1>
 <div class="container">
-<form>
+<form @submit.prevent="handleCreateRecord">
   PatientID:<br>
-    <input type="text" name="PID"><br>
+    <input type="text" name="PID" id="recordPID" v-model="formPatient.patientGuid"><br>
     First name:<br>
-    <input type="text" name="firstname"><BR>
+    <input type="text" name="firstname" id="recordFirstName" v-model="formPatient.firstName"><BR>
     Last name:<br>
-    <input type="text" name="lastname"><BR>
+    <input type="text" name="lastname" id="recordLastName" v-model="formPatient.lastName"><BR>
     Date of Birth:<br>
-      <input type="date" name="dob"><BR>
+      <input type="date" name="dob" id="recordDob" v-model="formPatient.dob"><BR>
     Sex:<br>
-    <select name="sex">
+    <select name="sex" id="recordSex" v-model="formPatient.sexAtBirth">
     <option value="BLANK"> </option>
     <option value="F">Female</option>
     <option value="M">Male</option>
   </select><br>
 Piority Level: <br>
-<select name="Piority">
+<select name="Piority" id="recordProity" v-model="formPatient.priority">
 <option value="BLANK"> </option>
 <option value="High">High</option>
 <option value="Low">Low</option>
 <<option value="medium">Medium</option>
 </select><br>
+<br>
+       <button type="submit" class="btn btn-primary">Create</button>
   </form>
   </div>
-<div class="container">
+  <BR>
+
+<div class="container" id="patientRecordApp">
   <table>
     <thead>
       <th>PID</th>
@@ -40,12 +44,26 @@ Piority Level: <br>
       <th>Date of Birth</th>
       <th>Sex</th>
       <th>Piority Level</th>
-      
+    </thead>
+    <tbody>
+      <tr v-for="p in patients">
+      <td>{{p.patientGuid}}</td>                      </td>
+        <td>{{p.firstName}}</td>
+        <td>{{p.lastName}}</td>
+        <td>{{p.dob}}</td>
+        <td>{{p.sexAtBirth}}</td>
+        <td>{{p.priority}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 
-      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-    <script src="js/RecordApp.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script src="js/RecordApp.js"></script>
 
 
 </body>
